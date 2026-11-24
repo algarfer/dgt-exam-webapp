@@ -43,7 +43,7 @@ export function useKeybinds(bindings: Keybinding[]): void {
 }
 
 export const ANSWER_KEYS = ["1", "2", "3"];
-export const ADVANCE_KEYS = ["Enter", " ", "l", "L"];
-export const NEXT_KEYS = ["ArrowRight", "j", "J"];
-export const PREVIOUS_KEYS = ["ArrowLeft", "k", "K"];
+export const ADVANCE_KEYS = ["Enter", " "];
+export const NEXT_KEYS = ["ArrowRight", "ArrowDown", "j", "J", "l", "L"];
+export const PREVIOUS_KEYS = ["ArrowLeft", "ArrowUp", "k", "K", "h", "H"];
 export const HELP_KEYS = ["?"];

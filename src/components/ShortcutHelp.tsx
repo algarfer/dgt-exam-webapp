@@ -14,6 +14,8 @@ const named: Record<string, string> = {
   " ": "Espacio",
   ArrowRight: "→",
   ArrowLeft: "←",
+  ArrowDown: "↓",
+  ArrowUp: "↑",
 };
 
 /** Read off the real bindings, so this list cannot drift from them. */
