@@ -3,5 +3,6 @@
   packages = with pkgs; [
     git
     bun
+    biome
   ];
 }
