@@ -1,15 +1,39 @@
 import { useEffect, useRef, useState } from "react";
-import { HELP_KEYS, useKeybinds } from "@/hooks/useKeybinds";
+import {
+  ADVANCE_KEYS,
+  ANSWER_KEYS,
+  HELP_KEYS,
+  NEXT_KEYS,
+  PREVIOUS_KEYS,
+  useKeybinds,
+} from "@/hooks/useKeybinds";
 import { Button } from "./ui/Button";
 import { Heading } from "./ui/Heading";
 
+const named: Record<string, string> = {
+  " ": "Espacio",
+  ArrowRight: "→",
+  ArrowLeft: "←",
+};
+
+/** Read off the real bindings, so this list cannot drift from them. */
+function labels(keys: string[]): string[] {
+  const seen = new Set<string>();
+
+  for (const key of keys) {
+    seen.add(named[key] ?? (key.length === 1 ? key.toUpperCase() : key));
+  }
+
+  return [...seen];
+}
+
 const shortcuts = [
-  { keys: ["1", "2", "3"], what: "Elegir la respuesta, hasta las que tenga la pregunta" },
-  { keys: ["Enter", "Espacio"], what: "Comprobar, entregar o avanzar, según el modo" },
-  { keys: ["N", "→"], what: "Siguiente pregunta" },
-  { keys: ["P", "←"], what: "Pregunta anterior, solo en modo examen" },
+  { keys: labels(ANSWER_KEYS), what: "Elegir la respuesta, hasta las que tenga la pregunta" },
+  { keys: labels(ADVANCE_KEYS), what: "Comprobar, entregar o avanzar, según el modo" },
+  { keys: labels(NEXT_KEYS), what: "Siguiente pregunta" },
+  { keys: labels(PREVIOUS_KEYS), what: "Pregunta anterior, solo en modo examen" },
   { keys: ["Esc"], what: "Cerrar el diálogo abierto" },
-  { keys: ["?"], what: "Abrir y cerrar esta ayuda" },
+  { keys: labels(HELP_KEYS), what: "Abrir y cerrar esta ayuda" },
 ];
 
 export function ShortcutHelp() {
