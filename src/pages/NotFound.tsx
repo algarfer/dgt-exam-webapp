@@ -9,9 +9,7 @@ export function NotFound() {
         404
       </Figure>
       <Heading className="mt-gap">Esta página no existe</Heading>
-      <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">
-        Ups, no hay nada que ver aqui.
-      </p>
+      <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">Ups, no hay nada que ver aqui.</p>
       <Link to="/" className="mt-interval inline-block underline">
         Volver al inicio
       </Link>
