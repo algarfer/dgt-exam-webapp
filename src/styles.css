@@ -2,8 +2,147 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@font-face {
+  font-family: "JetBrains Mono Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url("@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2")
+    format("woff2-variations");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "JetBrains Mono Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url("@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-normal.woff2")
+    format("woff2-variations");
+  unicode-range:
+    U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0,
+    U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/*
+ * Theme: thermoplastic paint on asphalt. Flat colour only, division by
+ * hairline or painted line, never by elevation. Paint does not round, so there
+ * are no radii in this system.
+ */
+@theme {
+  --color-asphalt: #1c1d1a;
+  --color-asphalt-raised: #22241f;
+  --color-seam: #4a4e48;
+  --color-seam-faint: #32352f;
+  --color-paint: #f4f2ec;
+  --color-paint-dim: #8a8f86;
+  --color-temporary: #f2c230;
+  --color-concrete: #d9d7cf;
+  --color-concrete-raised: #e6e4dd;
+  --color-kerb: #a8a6a0;
+  --color-ink: #1c1d1a;
+  --color-ink-dim: #5a5d55;
+  --color-hazard: #c8102e;
+
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  /* The dash-and-gap interval: paint, void, paint. */
+  --spacing-dash: 0.5rem;
+  --spacing-gap: 1rem;
+  --spacing-interval: 2rem;
+  --spacing-run: 4rem;
+
+  --radius-none: 0;
+}
+
 @layer base {
+  :root {
+    color-scheme: light;
+    --ground: var(--color-concrete);
+    --ground-raised: var(--color-concrete-raised);
+    --ink: var(--color-ink);
+    --ink-dim: var(--color-ink-dim);
+    --line: var(--color-ink);
+    --seam-color: var(--color-kerb);
+  }
+
+  .dark {
+    color-scheme: dark;
+    --ground: var(--color-asphalt);
+    --ground-raised: var(--color-asphalt-raised);
+    --ink: var(--color-paint);
+    --ink-dim: var(--color-paint-dim);
+    --line: var(--color-paint);
+    --seam-color: var(--color-seam);
+  }
+
   body {
-    @apply bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-50;
+    background-color: var(--ground);
+    color: var(--ink);
+    @apply antialiased;
+  }
+
+  .font-mono,
+  [class*="font-mono"] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background-color: var(--color-temporary);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-temporary);
+    outline-offset: 2px;
+  }
+
+  a {
+    text-underline-offset: 0.25em;
+  }
+
+  * {
+    scrollbar-color: var(--seam-color) transparent;
+    scrollbar-width: thin;
+  }
+
+  input,
+  textarea {
+    caret-color: var(--color-temporary);
+  }
+}
+
+@layer components {
+  .rail {
+    position: relative;
+    padding-inline-start: calc(var(--spacing-interval) + 0.375rem);
+  }
+
+  .rail::before {
+    content: "";
+    position: absolute;
+    inset-block: 0.5rem;
+    inset-inline-start: 0;
+    width: 6px;
+  }
+
+  .rail-open::before {
+    background: repeating-linear-gradient(var(--line) 0 1.25rem, transparent 1.25rem 2.25rem);
+  }
+
+  .rail-committed::before {
+    background-color: var(--line);
+  }
+
+  .rail-correct::before {
+    background-color: var(--line);
+  }
+
+  .rail-barred::before {
+    background-color: var(--color-temporary);
+    box-shadow: 0.75rem 0 0 var(--color-temporary);
   }
 }

@@ -8,6 +8,20 @@
       name="description"
       content="Aplicacion para la resolucion de examenes de conducir (DGT)"
     />
+    <script>
+      (() => {
+        try {
+          const saved = JSON.parse(localStorage.getItem("dgt-exam-webapp") || "{}");
+          const theme = saved?.state?.settings?.theme || "system";
+          if (
+            theme === "dark" ||
+            (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches)
+          ) {
+            document.documentElement.classList.add("dark");
+          }
+        } catch {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
