@@ -53,6 +53,9 @@ export default {
     ],
   },
   plugins: [
+    new rspack.DefinePlugin({
+      "process.env.DEFAULT_MANIFEST_URL": JSON.stringify(process.env.DEFAULT_MANIFEST_URL ?? null),
+    }),
     new rspack.HtmlRspackPlugin({ template: "./src/index.html" }),
     new rspack.CopyRspackPlugin({
       patterns: [{ from: "public", noErrorOnMissing: true }],
