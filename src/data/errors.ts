@@ -31,3 +31,13 @@ export class ParseError extends Error {
     this.cause = cause;
   }
 }
+
+export class SchemaValidationError extends Error {
+  readonly details: string[];
+
+  constructor(subject: string, details: string[]) {
+    super(`The ${subject} does not match the schema`);
+    this.name = "SchemaValidationError";
+    this.details = details;
+  }
+}

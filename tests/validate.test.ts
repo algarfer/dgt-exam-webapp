@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
+import { SchemaValidationError } from "@/data/errors";
 import type { Exam, Manifest } from "@/data/types";
-import { SchemaValidationError, validateExam, validateManifest } from "@/data/validate";
+import { validateExam, validateManifest } from "@/data/validate";
 import examFixture from "./fixtures/exam-248.json";
 import manifestFixture from "./fixtures/manifest.json";
 

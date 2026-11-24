@@ -1,7 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { HttpError, NetworkError, ParseError } from "@/data/errors";
+import { HttpError, NetworkError, ParseError, SchemaValidationError } from "@/data/errors";
 import { clearCache, examUrl, fetchExam, fetchManifest, questionImageUrl } from "@/data/repository";
-import { SchemaValidationError } from "@/data/validate";
 import { isValidManifestUrl, manifestId } from "@/lib/manifest-id";
 import examFixture from "./fixtures/exam-248.json";
 import manifestFixture from "./fixtures/manifest.json";
