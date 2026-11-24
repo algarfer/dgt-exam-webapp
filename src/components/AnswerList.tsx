@@ -32,29 +32,35 @@ export function AnswerList({ question, selected, revealed, onSelect }: AnswerLis
 
         return (
           <li key={answer.text}>
-            <button
-              type="button"
-              onClick={() => onSelect(index)}
-              disabled={revealed}
-              aria-pressed={selected === index}
+            <label
               className={cn(
                 rail(state),
                 "flex w-full items-baseline gap-gap py-gap text-start",
                 "border-t border-[var(--seam-color)]",
+                "focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-temporary",
                 "motion-safe:transition-colors motion-safe:duration-150",
-                !revealed && "hover:bg-[var(--ground-raised)]",
-                revealed && "cursor-default",
+                revealed ? "cursor-default" : "cursor-pointer hover:bg-[var(--ground-raised)]",
                 state === "barred" && "text-temporary",
               )}
             >
+              <input
+                type="radio"
+                name={`answer-${question.id}`}
+                className="sr-only"
+                checked={selected === index}
+                disabled={revealed}
+                onChange={() => onSelect(index)}
+              />
+
               <Figure className="shrink-0 text-[var(--ink-dim)]">{index + 1}</Figure>
               <span className="flex-1 text-base sm:text-lg">{answer.text}</span>
+
               {hint[state] ? (
-                <span className="hidden shrink-0 text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)] sm:block">
+                <span className="sr-only sm:not-sr-only sm:shrink-0 sm:text-xs sm:uppercase sm:tracking-[0.1em] sm:text-[var(--ink-dim)]">
                   {hint[state]}
                 </span>
               ) : null}
-            </button>
+            </label>
           </li>
         );
       })}
