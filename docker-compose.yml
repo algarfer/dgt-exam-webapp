@@ -1,0 +1,22 @@
+services:
+  dgt-exam:
+    image: dgt-exam:latest
+    hostname: dgt-exam
+    container_name: dgt-exam
+    build:
+      context: .
+      args:
+        PUBLIC_PATH: /
+        DEFAULT_MANIFEST_URL: ""
+    restart: unless-stopped
+    ports:
+      - 80:80
+    environment:
+      NGINX_HOST: _
+      NGINX_PORT: "80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:$${NGINX_PORT}/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

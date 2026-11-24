@@ -1,0 +1,26 @@
+server {
+    listen ${NGINX_PORT};
+    server_name ${NGINX_HOST};
+    root /usr/share/nginx/html;
+
+    error_page 404 /404.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location = /404.html {
+        internal;
+    }
+
+    location ~* \.(js|css|woff2|jpe?g|png|svg|gif|webp)$ {
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+    }
+
+    location ~* \.html$ {
+        add_header Cache-Control "no-cache" always;
+    }
+
+    gzip on;
+    gzip_types text/css application/javascript image/svg+xml application/json;
+}
