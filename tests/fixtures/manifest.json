@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/algarfer/dgt-exam-scraper/master/schemas/manifest.schema.json",
+  "generated_at": "2026-11-08T17:18:29Z",
+  "source": "https://revista.dgt.es/",
+  "exams": [
+    {
+      "number": 279,
+      "title": "Octubre 2026",
+      "path": "exam-279/index.json"
+    },
+    {
+      "number": 278,
+      "title": "Junio 2026",
+      "path": "exam-278/index.json"
+    },
+    {
+      "number": 277,
+      "title": "Marzo de 2026",
+      "path": "exam-277/index.json"
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "$schema": "https://raw.githubusercontent.com/algarfer/dgt-exam-scraper/master/schemas/exam.schema.json",
+  "number": 248,
+  "title": "Diciembre 2018",
+  "url": "https://revista.dgt.es/es/test/Test-num-248.shtml",
+  "scraped_at": "2026-11-08T17:18:24Z",
+  "questions": [
+    {
+      "number": 1,
+      "title": "Para adelantar a este vehículo...",
+      "image": "image-1.jpg",
+      "image_alt": "Adelantamiento con lluvia",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-01.jpg",
+      "answers": [
+        {
+          "text": "es obligatorio esperar a un tramo en el que la calzada esté seca.",
+          "correct": false
+        },
+        {
+          "text": "debe tenerse especial cuidado, pues las salpicaduras pueden impedir la visibilidad.",
+          "correct": true
+        },
+        {
+          "text": "no deben tomarse precauciones especiales.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "La luz antiniebla trasera deberá utilizarse en caso de...",
+      "image": "image-2.jpg",
+      "image_alt": "Niebla y luces anti-niebla",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-02.jpg",
+      "answers": [
+        {
+          "text": "frenada brusca.",
+          "correct": false
+        },
+        {
+          "text": "heladas nocturnas.",
+          "correct": false
+        },
+        {
+          "text": "nubes densas de humo.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "No pueden circular por autopista...",
+      "image": "image-3.jpg",
+      "image_alt": "Vehículos en autopista",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-03.jpg",
+      "answers": [
+        {
+          "text": "las motocicletas.",
+          "correct": false
+        },
+        {
+          "text": "los ciclomotores.",
+          "correct": true
+        },
+        {
+          "text": "los camiones de más de 3.500 kg de M.M.A.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Una línea longitudinal discontinua con trazos más anchos que en el caso general, indica...",
+      "image": "image-4.jpg",
+      "image_alt": "Marca vial",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-04.jpg",
+      "answers": [
+        {
+          "text": "la existencia de un carril reversible.",
+          "correct": false
+        },
+        {
+          "text": "la existencia de un carril especial para determinada clase de vehículos, de entrada o salida, u otro.",
+          "correct": true
+        },
+        {
+          "text": "la existencia de un carril que puede ser utilizado en sentido contrario al habitual.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Al cargar combustible en el vehículo es obligatorio...",
+      "image": "image-5.jpg",
+      "image_alt": "Repostar combustible",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-05.jpg",
+      "answers": [
+        {
+          "text": "apagar las luces y subir las ventanillas.",
+          "correct": false
+        },
+        {
+          "text": "parar el motor y encender la señal de emergencia.",
+          "correct": false
+        },
+        {
+          "text": "apagar las luces y los sistemas eléctricos, como la radio.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "En un paso para peatones sin semáforos que lo regule, ¿cuándo tienen preferencia los peatones?",
+      "image": "image-6.jpg",
+      "image_alt": "Preferencia en paso de peatones",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-06.jpg",
+      "answers": [
+        {
+          "text": "Solo cuando el paso esté situado en una travesía.",
+          "correct": false
+        },
+        {
+          "text": "Siempre.",
+          "correct": true
+        },
+        {
+          "text": "Solo cuando los peatones hayan iniciado el cruce.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "El conductor de la furgoneta, ¿puede hacer una parada en doble fila para descargar?",
+      "image": "image-7.jpg",
+      "image_alt": "Doble fila",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-07.jpg",
+      "answers": [
+        {
+          "text": "No, está prohibido.",
+          "correct": false
+        },
+        {
+          "text": "Sí, excepcionalmente y respetando las normas sobre paradas.",
+          "correct": true
+        },
+        {
+          "text": "Solo si la parada tiene una duración igual o inferior a 1 minuto.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Los vehículos que circulan por la autovía, ¿facilitarán el paso a los vehículos que se incorporan desde el carril de aceleración?",
+      "image": "image-8.jpg",
+      "image_alt": "Incorporaciones en autovía",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-08.jpg",
+      "answers": [
+        {
+          "text": "No, salvo que se trate de vehículos de transporte colectivo.",
+          "correct": false
+        },
+        {
+          "text": "Sí, pero solo a los vehículos que se incorporen por el lado derecho.",
+          "correct": false
+        },
+        {
+          "text": "Sí, a cualquier vehículo que se incorpore, en la medida de lo posible.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Cuando prevea que va a quedar detenido dentro del túnel más de dos minutos, ¿qué debe hacer?",
+      "image": "image-9.jpg",
+      "image_alt": "Detenciones en túneles",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-09.jpg",
+      "answers": [
+        {
+          "text": "Apagar el motor.",
+          "correct": true
+        },
+        {
+          "text": "Apagar las luces.",
+          "correct": false
+        },
+        {
+          "text": "Dar media vuelta con cuidado.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Circula de noche con el alumbrado interior encendido. ¿Es peligroso?",
+      "image": "image-10.jpg",
+      "image_alt": "Circulación de noche",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/test-248-preg-10.jpg",
+      "answers": [
+        {
+          "text": "No, porque descansa la vista.",
+          "correct": false
+        },
+        {
+          "text": "Sí, porque veo peor.",
+          "correct": true
+        },
+        {
+          "text": "No, porque evita deslumbramiento.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "title": "La eficacia del frenado aumenta, entre otras circunstancias, cuando...",
+      "image": "image-11.jpg",
+      "image_alt": "Distancia de frenado",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-11-detalle.jpg",
+      "answers": [
+        {
+          "text": "La masa del vehículo es mayor, ya que a mayor masa menor distancia de frenado.",
+          "correct": false
+        },
+        {
+          "text": "Se pisa el pedal de embrague al mismo tiempo que el pedal de freno.",
+          "correct": false
+        },
+        {
+          "text": "La adherencia de los neumáticos al suelo es mayor.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Como norma general, ¿cuándo es mayor el efecto del alcohol?",
+      "image": "image-12.jpg",
+      "image_alt": "Efectos del alcohol en la conducción",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-12.jpg",
+      "answers": [
+        {
+          "text": "Inmediatamente después de tomarlo.",
+          "correct": false
+        },
+        {
+          "text": "Entre 30 y 90 minutos después de haber ingerido el alcohol.",
+          "correct": true
+        },
+        {
+          "text": "Tres horas después de tomarlo.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "title": "¿De qué depende la distancia de detención?",
+      "image": "image-13.jpg",
+      "image_alt": "Frenazo",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-13.jpg",
+      "answers": [
+        {
+          "text": "De la velocidad, solamente.",
+          "correct": false
+        },
+        {
+          "text": "Del tipo de vehículo, solamente.",
+          "correct": false
+        },
+        {
+          "text": "De la velocidad, del tiempo de reacción y de la distancia de frenado.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "title": "¿Puede adelantar por la derecha al vehículo que circula delante por su mismo carril?",
+      "image": "image-14.jpg",
+      "image_alt": "Adelantar por la derecha",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-14.jpg",
+      "answers": [
+        {
+          "text": "Sí.",
+          "correct": false
+        },
+        {
+          "text": "No.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "title": "La fatiga, ¿puede alterar el tiempo de reacción del conductor?",
+      "image": "image-15.jpg",
+      "image_alt": "Fatiga",
+      "image_source": "https://revista.dgt.es/Galerias/test/N-248/Test-248-preg-15.jpg",
+      "answers": [
+        {
+          "text": "Sí, lo aumenta.",
+          "correct": true
+        },
+        {
+          "text": "Sí, lo disminuye.",
+          "correct": false
+        },
+        {
+          "text": "No.",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
