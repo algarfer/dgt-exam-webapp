@@ -24,7 +24,7 @@ export function TurnControls({
     <nav className="mt-run flex flex-wrap items-center gap-gap border-t border-[var(--seam-color)] pt-gap">
       {reveal === "submit" && !revealed ? (
         <Button onClick={onSubmit} disabled={!canSubmit}>
-          Enviar 
+          Enviar
         </Button>
       ) : null}
 

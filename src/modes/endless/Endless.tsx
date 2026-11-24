@@ -32,8 +32,7 @@ export async function endlessLoader(): Promise<EndlessData> {
       for (const entry of manifest.exams) {
         refs.push({ manifestUrl, path: entry.path, number: entry.number });
       }
-    } catch {
-    }
+    } catch {}
   }
 
   return { refs };

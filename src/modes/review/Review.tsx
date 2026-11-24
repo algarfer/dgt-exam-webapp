@@ -46,8 +46,8 @@ export function Review() {
       <section className="py-run">
         <Heading>No tienes preguntas falladas</Heading>
         <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">
-          Aquí aparecen las preguntas que falles en cualquier modo, y solo desaparecen cuando
-          las aciertas.
+          Aquí aparecen las preguntas que falles en cualquier modo, y solo desaparecen cuando las
+          aciertas.
         </p>
         <Link to="/exams" className="mt-interval inline-block underline">
           Ver los exámenes
