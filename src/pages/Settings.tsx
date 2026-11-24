@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Heading } from "@/components/ui/Heading";
 import { cn } from "@/lib/cn";
-import { downloadExport, exportFileName, readImportFile } from "@/store/export";
+import { downloadExport, readImportFile } from "@/store/export";
 import { useStore } from "@/store/store";
 import type { RevealMode, Theme } from "@/store/types";
 
@@ -130,9 +130,7 @@ export function Settings() {
       </p>
 
       <div className="mt-interval flex flex-wrap items-center gap-gap">
-        <Button onClick={() => downloadExport(useStore.getState())}>
-          Exportar
-        </Button>
+        <Button onClick={() => downloadExport(useStore.getState())}>Exportar</Button>
 
         <Button variant="secondary" onClick={() => fileInput.current?.click()}>
           Importar
