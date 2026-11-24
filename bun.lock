@@ -5,6 +5,7 @@
     "": {
       "name": "dgt-exam-webapp",
       "dependencies": {
+        "@fontsource-variable/jetbrains-mono": "^5.3.0",
         "ajv": "^8.20.0",
         "ajv-formats": "^3.0.1",
         "clsx": "^2.1.1",
@@ -43,6 +44,8 @@
     "@emnapi/runtime": ["@emnapi/runtime@2.0.0-beta.3", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-ayb/PyyLzpwRyFVxeC0uoEHu59QlB1iWGcGsOpXQcaB/Dc+uGfBmNmpCHp3HmTT0t8lSsMmg3j7+tdJW/TlHjQ=="],
 
     "@emnapi/wasi-threads": ["@emnapi/wasi-threads@2.2.0", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-JP7OYH38Q7+pyTAe14raZHLQIK7BDKbdwji+Xi3pcd/6QkJYQH3SX4wu6EplGrGJWRepoNzedfm0G3B9Z4e9Rw=="],
+
+    "@fontsource-variable/jetbrains-mono": ["@fontsource-variable/jetbrains-mono@5.3.0", "", {}, "sha512-F32xpS2NsGYoQi2ADSkKTgpJj7ozajsGgDJ8woTnqjmIB+dxDIqImjl4pXZVEExu8UFZ2ndhmX18EBS/hdz3Lw=="],
 
     "@jridgewell/gen-mapping": ["@jridgewell/gen-mapping@0.3.13", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA=="],
 

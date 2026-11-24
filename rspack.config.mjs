@@ -50,6 +50,10 @@ export default {
         test: /\.svg$/,
         type: "asset/resource",
       },
+      {
+        test: /\.woff2$/,
+        type: "asset/resource",
+      },
     ],
   },
   plugins: [
