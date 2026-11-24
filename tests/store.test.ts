@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it } from "bun:test";
 import { DEFAULT_MANIFEST_URL } from "@/data/repository";
-import type { Question } from "@/data/types";
 import { questionKey } from "@/lib/keys";
 import { manifestId } from "@/lib/manifest-id";
 import { buildExport, ImportError, parseImport } from "@/store/export";
@@ -11,15 +10,6 @@ import type { Attempt, FailedQuestion } from "@/store/types";
 const OTHER_MANIFEST = "https://example.com/dgt/manifest.json";
 const OTHER_ID = manifestId(OTHER_MANIFEST);
 
-const question: Question = {
-  number: 3,
-  title: "¿Qué sistema reduce el riesgo de bloqueo de las ruedas?",
-  answers: [
-    { text: "El servofreno.", correct: false },
-    { text: "El ABS.", correct: true },
-  ],
-};
-
 function failedEntry(manifest: string, examNumber: number, questionNumber: number): FailedQuestion {
   return {
     id: questionKey(manifest, examNumber, questionNumber),
@@ -27,7 +17,15 @@ function failedEntry(manifest: string, examNumber: number, questionNumber: numbe
     examNumber,
     examTitle: "Febrero 2014",
     examUrl: `https://example.com/dgt/exam-${examNumber}/index.json`,
-    question: { ...question, number: questionNumber },
+    number: questionNumber,
+    title: "¿Qué sistema reduce el riesgo de bloqueo de las ruedas?",
+    imageUrl: `https://example.com/dgt/exam-${examNumber}/image-${questionNumber}.jpg`,
+    imageAlt: "Riesgo bloqueo de ruedas",
+    feedback: null,
+    answers: [
+      { text: "El servofreno.", correct: false },
+      { text: "El ABS.", correct: true },
+    ],
     addedAt: "2026-11-24T10:00:00.000Z",
   };
 }
@@ -109,7 +107,7 @@ describe("failed pool", () => {
 
     const entry = useStore.getState().failed[questionKey(DEFAULT_MANIFEST_ID, 279, 3)];
 
-    expect(entry?.question.title).toContain("bloqueo");
+    expect(entry?.title).toContain("bloqueo");
     expect(entry?.examUrl).toContain("exam-279/index.json");
   });
 

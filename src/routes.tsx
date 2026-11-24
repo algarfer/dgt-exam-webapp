@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import { Shell } from "@/components/Shell";
+import { ExamRun, examRunLoader } from "@/modes/exam/ExamRun";
+import { ExamList, examListLoader } from "@/modes/exam-list/ExamList";
 import { Home, homeLoader } from "@/pages/Home";
 import { NotFound } from "@/pages/NotFound";
 import { Placeholder } from "@/pages/Placeholder";
@@ -12,8 +14,8 @@ export const router = createBrowserRouter([
     ErrorBoundary: RouteError,
     children: [
       { index: true, Component: Home, loader: homeLoader },
-      { path: "exams", Component: () => <Placeholder title="Exámenes" /> },
-      { path: "exams/:number", Component: () => <Placeholder title="Examen" /> },
+      { path: "exams", Component: ExamList, loader: examListLoader },
+      { path: "exams/:number", Component: ExamRun, loader: examRunLoader },
       { path: "review", Component: () => <Placeholder title="Tus preguntas falladas" /> },
       { path: "endless", Component: () => <Placeholder title="Modo sin fin" /> },
       { path: "stats", Component: () => <Placeholder title="Estadísticas" /> },

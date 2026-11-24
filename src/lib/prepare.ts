@@ -1,5 +1,6 @@
 import { questionImageUrl } from "@/data/repository";
 import type { Exam, Question } from "@/data/types";
+import type { FailedQuestion } from "@/store/types";
 import { questionKey } from "./keys";
 import { shuffled } from "./shuffle";
 
@@ -51,6 +52,25 @@ export function prepareQuestion(
     imageUrl: question.image ? questionImageUrl(context.examUrl, question.image) : null,
     imageAlt: question.image_alt ?? null,
     feedback: question.feedback ?? null,
+    answers,
+    correctIndex: answers.findIndex((answer) => answer.correct),
+  };
+}
+
+export function prepareSnapshot(entry: FailedQuestion, seed: number): PreparedQuestion {
+  const answers = shuffled(entry.answers, seed);
+
+  return {
+    id: entry.id,
+    manifestId: entry.manifestId,
+    examNumber: entry.examNumber,
+    examTitle: entry.examTitle,
+    examUrl: entry.examUrl,
+    number: entry.number,
+    title: entry.title,
+    imageUrl: entry.imageUrl,
+    imageAlt: entry.imageAlt,
+    feedback: entry.feedback,
     answers,
     correctIndex: answers.findIndex((answer) => answer.correct),
   };

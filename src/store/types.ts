@@ -1,5 +1,3 @@
-import type { Question } from "@/data/types";
-
 export type Theme = "system" | "light" | "dark";
 
 export type RevealMode = "select" | "submit";
@@ -17,9 +15,13 @@ export type FailedQuestion = {
   manifestId: string;
   examNumber: number;
   examTitle: string;
-  /** Resolved exam URL */
   examUrl: string;
-  question: Question;
+  number: number;
+  title: string;
+  imageUrl: string | null;
+  imageAlt: string | null;
+  feedback: string | null;
+  answers: { text: string; correct: boolean }[];
   addedAt: string;
 };
 
