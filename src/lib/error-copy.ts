@@ -21,7 +21,7 @@ export function errorCopy(error: unknown): ErrorCopy {
       title: error.status === 404 ? "El archivo no existe" : "El servidor ha devuelto un error",
       detail: `${error.url} ha respondido ${error.status}.`,
       recovery:
-        error.status === 404 ? "Revisa la URL del manifiesto." : "Vuelve a intentarlo mas tarde.",
+        error.status === 404 ? "Revisa la URL del manifiesto." : "Vuelve a intentarlo más tarde.",
     };
   }
 

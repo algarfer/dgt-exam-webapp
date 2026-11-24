@@ -27,7 +27,7 @@ export function Home() {
   return (
     <section className="pt-run">
       <Heading level={2} className="text-xs uppercase tracking-[0.18em] text-[var(--ink-dim)]">
-        Qué quieres hacer?
+        ¿Qué quieres hacer?
       </Heading>
 
       <div className="mt-gap">
@@ -51,7 +51,7 @@ export function Home() {
           to="/exams"
           lead={<Figure size="lead">{manifest.exams.length}</Figure>}
           title="Exámenes"
-          description="Realiza examenes tanto en formato estudio como examen."
+          description="Realiza exámenes en modo estudio o en modo examen."
           aside={
             <>
               <Figure size="strong" className="block">
