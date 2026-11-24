@@ -13,7 +13,7 @@ ENV NODE_ENV=production
 ENV PUBLIC_PATH=$PUBLIC_PATH
 ENV DEFAULT_MANIFEST_URL=$DEFAULT_MANIFEST_URL
 
-RUN bun run build
+RUN bun run schemas && bun run build
 
 FROM nginx:1.29-alpine AS runtime
 
