@@ -5,9 +5,11 @@ import { ExamRun, examRunLoader } from "@/modes/exam/ExamRun";
 import { ExamList, examListLoader } from "@/modes/exam-list/ExamList";
 import { Review } from "@/modes/review/Review";
 import { Home, homeLoader } from "@/pages/Home";
+import { Manifests } from "@/pages/Manifests";
 import { NotFound } from "@/pages/NotFound";
-import { Placeholder } from "@/pages/Placeholder";
 import { RouteError } from "@/pages/RouteError";
+import { Settings } from "@/pages/Settings";
+import { Stats } from "@/pages/Stats";
 
 export const router = createBrowserRouter([
   {
@@ -20,9 +22,9 @@ export const router = createBrowserRouter([
       { path: "exams/:number", Component: ExamRun, loader: examRunLoader },
       { path: "review", Component: Review },
       { path: "endless", Component: Endless, loader: endlessLoader },
-      { path: "stats", Component: () => <Placeholder title="Estadísticas" /> },
-      { path: "settings", Component: () => <Placeholder title="Ajustes" /> },
-      { path: "manifests", Component: () => <Placeholder title="Manifiestos" /> },
+      { path: "stats", Component: Stats },
+      { path: "settings", Component: Settings },
+      { path: "manifests", Component: Manifests },
       { path: "*", Component: NotFound },
     ],
   },
