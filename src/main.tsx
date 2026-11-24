@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { Heading } from "@/components/ui/Heading";
+import { RouterProvider } from "react-router";
+import { router } from "@/routes";
 import "./styles.css";
 
 const container = document.getElementById("root");
@@ -10,8 +11,6 @@ if (!container) {
 
 createRoot(container).render(
   <StrictMode>
-    <div className="p-6">
-      <Heading>DGT Tests</Heading>
-    </div>
+    <RouterProvider router={router} />
   </StrictMode>,
 );
