@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="DGT Tests">
+  <title>DGT Tests</title>
+  <rect width="32" height="32" fill="#1c1d1a" />
+  <g fill="#f4f2ec">
+    <rect x="6" y="3" width="5" height="8" />
+    <rect x="6" y="15" width="5" height="8" />
+    <rect x="6" y="27" width="5" height="2" />
+  </g>
+  <g fill="#f2c230">
+    <rect x="16" y="3" width="4" height="26" />
+    <rect x="23" y="3" width="4" height="26" />
+  </g>
+</svg>

@@ -61,9 +61,12 @@ export default {
     new rspack.DefinePlugin({
       "process.env.DEFAULT_MANIFEST_URL": JSON.stringify(process.env.DEFAULT_MANIFEST_URL ?? null),
     }),
-    new rspack.HtmlRspackPlugin({ template: "./src/index.html" }),
+    new rspack.HtmlRspackPlugin({
+      template: "./src/index.html",
+      templateParameters: { publicPath },
+    }),
     new rspack.CopyRspackPlugin({
-      patterns: [{ from: "public", noErrorOnMissing: true }],
+      patterns: [{ from: "public", to: "public", noErrorOnMissing: true }],
     }),
     isDev && new ReactRefreshRspackPlugin(),
   ].filter(Boolean),
