@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { Heading } from "@/components/ui/Heading";
 import "./styles.css";
 
 const container = document.getElementById("root");
@@ -9,6 +10,8 @@ if (!container) {
 
 createRoot(container).render(
   <StrictMode>
-    <h1 className="p-6 text-2xl font-semibold">DGT Tests</h1>
+    <div className="p-6">
+      <Heading>DGT Tests</Heading>
+    </div>
   </StrictMode>,
 );
