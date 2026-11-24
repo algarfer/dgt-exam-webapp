@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet, useNavigation } from "react-router";
 import { cn } from "@/lib/cn";
 import { manifestLabel } from "@/lib/manifest-label";
 import { activeManifestUrl, useStore } from "@/store/store";
+import { ShortcutHelp } from "./ShortcutHelp";
 import { ThemeToggle } from "./ThemeToggle";
 
 const routes = [
@@ -49,6 +50,7 @@ export function Shell() {
                 {route.label}
               </NavLink>
             ))}
+            <ShortcutHelp />
             <ThemeToggle />
           </nav>
         </div>

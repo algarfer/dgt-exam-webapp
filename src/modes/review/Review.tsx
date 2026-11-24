@@ -4,6 +4,7 @@ import { QuestionCard } from "@/components/QuestionCard";
 import { TurnControls } from "@/components/TurnControls";
 import { Figure } from "@/components/ui/Figure";
 import { Heading } from "@/components/ui/Heading";
+import { ADVANCE_KEYS, ANSWER_KEYS, NEXT_KEYS, useKeybinds } from "@/hooks/useKeybinds";
 import { useSingleTurn } from "@/hooks/useSingleTurn";
 import { prepareSnapshot } from "@/lib/prepare";
 import { randomSeed, shuffled } from "@/lib/shuffle";
@@ -40,6 +41,21 @@ export function Review() {
 
     setQueue((current) => (current.length > 1 ? [...current.slice(1), currentId] : current));
   };
+
+  useKeybinds([
+    ...ANSWER_KEYS.map((key, position) => ({
+      keys: [key],
+      when: !turn.revealed && position < (question?.answers.length ?? 0),
+      run: () => turn.select(position),
+    })),
+    {
+      keys: ADVANCE_KEYS,
+      when: turn.reveal === "submit" && !turn.revealed,
+      run: turn.submit,
+    },
+    { keys: ADVANCE_KEYS, run: advance },
+    { keys: NEXT_KEYS, run: advance },
+  ]);
 
   if (Object.keys(snapshots).length === 0) {
     return (

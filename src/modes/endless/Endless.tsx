@@ -5,6 +5,7 @@ import { TurnControls } from "@/components/TurnControls";
 import { Figure } from "@/components/ui/Figure";
 import { Heading } from "@/components/ui/Heading";
 import { examUrl, fetchExam, fetchManifest } from "@/data/repository";
+import { ADVANCE_KEYS, ANSWER_KEYS, NEXT_KEYS, useKeybinds } from "@/hooks/useKeybinds";
 import { useSingleTurn } from "@/hooks/useSingleTurn";
 import { errorCopy } from "@/lib/error-copy";
 import { manifestId } from "@/lib/manifest-id";
@@ -94,6 +95,21 @@ export function Endless() {
 
     setExamIndex((current) => (current + 1) % Math.max(order.length, 1));
   };
+
+  useKeybinds([
+    ...ANSWER_KEYS.map((key, position) => ({
+      keys: [key],
+      when: !turn.revealed && position < (current?.answers.length ?? 0),
+      run: () => turn.select(position),
+    })),
+    {
+      keys: ADVANCE_KEYS,
+      when: turn.reveal === "submit" && !turn.revealed,
+      run: turn.submit,
+    },
+    { keys: ADVANCE_KEYS, run: advance },
+    { keys: NEXT_KEYS, run: advance },
+  ]);
 
   if (order.length === 0) {
     return (

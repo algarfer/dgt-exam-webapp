@@ -8,6 +8,13 @@ import { Button } from "@/components/ui/Button";
 import { Figure } from "@/components/ui/Figure";
 import { examUrl, fetchExam, fetchManifest } from "@/data/repository";
 import type { Exam } from "@/data/types";
+import {
+  ADVANCE_KEYS,
+  ANSWER_KEYS,
+  NEXT_KEYS,
+  PREVIOUS_KEYS,
+  useKeybinds,
+} from "@/hooks/useKeybinds";
 import { useRecordAnswer } from "@/hooks/useRecordAnswer";
 import { useStopwatch } from "@/hooks/useStopwatch";
 import { allowedErrors, hasPassed } from "@/lib/dgt-rules";
@@ -63,8 +70,6 @@ export function ExamRun() {
   const answeredCount = Object.keys(answers).length;
   const missing = questions.length - answeredCount;
 
-  if (!question) return null;
-
   const selected = answers[index] ?? null;
   const revealed = studying ? selected !== null : submitted;
 
@@ -75,7 +80,7 @@ export function ExamRun() {
   );
 
   const select = (answerIndex: number) => {
-    if (revealed) return;
+    if (revealed || !question) return;
     setAnswers((current) => ({ ...current, [index]: answerIndex }));
 
     if (studying) {
@@ -101,6 +106,28 @@ export function ExamRun() {
       passed: hasPassed(questions.length - correctCount, questions.length),
     });
   };
+
+  const goNext = () => setIndex((current) => Math.min(current + 1, questions.length - 1));
+  const goPrevious = () => setIndex((current) => Math.max(current - 1, 0));
+
+  useKeybinds([
+    ...ANSWER_KEYS.map((key, position) => ({
+      keys: [key],
+      // Bounded by the answers this question actually has.
+      when: !revealed && position < (question?.answers.length ?? 0),
+      run: () => select(position),
+    })),
+    {
+      keys: ADVANCE_KEYS,
+      when: !studying && !submitted,
+      run: () => (missing > 0 ? setAskingSubmit(true) : finish()),
+    },
+    { keys: ADVANCE_KEYS, run: goNext },
+    { keys: NEXT_KEYS, run: goNext },
+    { keys: PREVIOUS_KEYS, when: !studying, run: goPrevious },
+  ]);
+
+  if (!question) return null;
 
   return (
     <section className="pt-run">
@@ -146,18 +173,11 @@ export function ExamRun() {
       </div>
 
       <nav className="mt-run flex flex-wrap items-center gap-gap border-t border-[var(--seam-color)] pt-gap">
-        <Button
-          variant="secondary"
-          onClick={() => setIndex((current) => current - 1)}
-          disabled={index === 0}
-        >
+        <Button variant="secondary" onClick={goPrevious} disabled={index === 0}>
           Anterior
         </Button>
 
-        <Button
-          onClick={() => setIndex((current) => current + 1)}
-          disabled={index >= questions.length - 1}
-        >
+        <Button onClick={goNext} disabled={index >= questions.length - 1}>
           Siguiente
         </Button>
 
