@@ -55,7 +55,7 @@ the user supplies, and the wrong-answer pool spans all of them at once.
   lives in `localStorage` and must be exportable to a file and importable again, because clearing
   site data is the only real way to lose it.
 - **Question content is untouchable.** Questions, answers and images are scraped DGT material,
-  rendered verbatim. The app never rewords, abbreviates, truncates or reorders the *content* of a
+  rendered verbatim. The app never rewords, abbreviates, truncates or reorders the _content_ of a
   question, and never invents an explanation for an answer.
 - **Spanish only.** Interface and content are Spanish, written natively rather than translated.
   There is no i18n layer and no language switcher.
