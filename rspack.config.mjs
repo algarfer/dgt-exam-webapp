@@ -69,13 +69,6 @@ export default {
   optimization: {
     splitChunks: {
       chunks: "all",
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          reuseExistingChunk: true,
-        },
-      },
     },
   },
   devServer: {
