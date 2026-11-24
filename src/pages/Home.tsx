@@ -1,22 +1,25 @@
 import { useLoaderData } from "react-router";
+import { RecentExams } from "@/components/RecentExams";
 import { Figure } from "@/components/ui/Figure";
 import { Heading } from "@/components/ui/Heading";
 import { Lane } from "@/components/ui/Lane";
 import { fetchManifest } from "@/data/repository";
 import type { Manifest } from "@/data/types";
+import { manifestId } from "@/lib/manifest-id";
 import { activeManifestUrl, useStore } from "@/store/store";
 
 type HomeData = {
   manifest: Manifest;
+  manifestUrl: string;
 };
 
 export async function homeLoader(): Promise<HomeData> {
   const manifestUrl = activeManifestUrl(useStore.getState());
-  return { manifest: await fetchManifest(manifestUrl) };
+  return { manifest: await fetchManifest(manifestUrl), manifestUrl };
 }
 
 export function Home() {
-  const { manifest } = useLoaderData() as HomeData;
+  const { manifest, manifestUrl } = useLoaderData() as HomeData;
   const failed = useStore((state) => state.failed);
 
   const backlog = Object.values(failed);
@@ -77,6 +80,8 @@ export function Home() {
           }
         />
       </div>
+
+      <RecentExams manifestId={manifestId(manifestUrl)} exams={manifest.exams} />
     </section>
   );
 }
