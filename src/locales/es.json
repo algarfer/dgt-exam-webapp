@@ -1,0 +1,259 @@
+{
+  "app": {
+    "title": "DGT Tests",
+    "description": "Aplicación para practicar los exámenes teóricos de conducir (DGT)",
+    "noscript": {
+      "title": "Necesitas JavaScript",
+      "body": "Esta aplicación te ayuda a preparar el examen teórico de la DGT. Para su correcto funcionamiento es necesario tener habilitado JavaScript.",
+      "hint": "Actívalo para los dominios de esta web y vuelve a cargar la página."
+    }
+  },
+  "common": {
+    "backHome": "Volver al inicio",
+    "back": "Volver",
+    "close": "Cerrar",
+    "cancel": "Cancelar",
+    "underConstruction": "En construcción."
+  },
+  "nav": {
+    "manifest": "Manifiesto · {{label}}",
+    "home": "Inicio",
+    "exams": "Exámenes",
+    "review": "Falladas",
+    "endless": "Sin fin",
+    "stats": "Estadísticas",
+    "settings": "Ajustes",
+    "exit": "Salir"
+  },
+  "theme": {
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "current": "Tema · {{theme}}",
+    "toggle": "Tema: {{current}}. Cambiar a {{next}}"
+  },
+  "home": {
+    "lead": "¿Qué quieres hacer?",
+    "review": {
+      "title": "Repasar las preguntas falladas",
+      "description": "Preguntas que has fallado en cualquier test.",
+      "aside": "exámenes"
+    },
+    "exams": {
+      "title": "Exámenes",
+      "description": "Realiza exámenes en modo estudio o en modo examen.",
+      "aside": "manifiesto generado"
+    },
+    "endless": {
+      "title": "Sin fin",
+      "description": "Preguntas de todos los exámenes disponibles.",
+      "aside": "exámenes"
+    }
+  },
+  "recent": {
+    "title": "Últimos exámenes",
+    "legend": "último · mejor · intentos",
+    "questions": "{{count}} preg.",
+    "columns": {
+      "exam": "Examen",
+      "title": "Título",
+      "questions": "Preguntas",
+      "time": "Tiempo",
+      "summary": "Último, mejor e intentos"
+    }
+  },
+  "examList": {
+    "title": "Exámenes",
+    "intro": "Elige un test y cómo quieres hacerlo. En modo estudio ves la respuesta al contestar; en modo examen se corrige todo al entregar, con cronómetro.",
+    "study": "Estudio",
+    "exam": "Examen",
+    "last": "último",
+    "best": "mejor",
+    "tries_one": "intento",
+    "tries_other": "intentos",
+    "notDone": "sin hacer"
+  },
+  "examRun": {
+    "studyMode": "Modo estudio",
+    "examMode": "Modo examen",
+    "exit": "Salir del test",
+    "position": "Pregunta {{current}} de {{total}}",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "confirm": {
+      "title": "Te quedan preguntas sin responder",
+      "body_one": "Hay {{count}} pregunta sin responder de {{total}}. Si entregas ahora contará como fallada.",
+      "body_other": "Hay {{count}} preguntas sin responder de {{total}}. Si entregas ahora contarán como falladas.",
+      "submit": "Enviar de todas formas",
+      "cancel": "Seguir respondiendo"
+    }
+  },
+  "question": {
+    "exam": "Examen"
+  },
+  "answers": {
+    "committed": "Tu respuesta",
+    "correct": "Respuesta correcta",
+    "barred": "Tu respuesta, incorrecta"
+  },
+  "stopwatch": {
+    "elapsed": "Tiempo transcurrido {{time}}",
+    "answered": "Respondidas",
+    "allowed": "Fallos permitidos"
+  },
+  "score": {
+    "passed": "Aprobado",
+    "failed": "Suspenso",
+    "correct": "Aciertos",
+    "percent": "Porcentaje",
+    "errors": "Fallos",
+    "time": "Tiempo",
+    "note_one": "Un examen de <fig>{{total}}</fig> preguntas admite <fig>{{count}}</fig> fallo.",
+    "note_other": "Un examen de <fig>{{total}}</fig> preguntas admite <fig>{{count}}</fig> fallos."
+  },
+  "turn": {
+    "check": "Comprobar",
+    "next": "Siguiente pregunta",
+    "revealOnSelect": "Ver respuesta al seleccionar",
+    "revealOnSubmit": "Ver respuesta al enviar"
+  },
+  "review": {
+    "label": "Repaso de preguntas",
+    "queued": "en cola",
+    "cleared": "resueltas",
+    "nextReturns": "Siguiente, esta vuelve",
+    "empty": {
+      "title": "No tienes preguntas falladas",
+      "body": "Aquí aparecen las preguntas que falles en cualquier modo, y solo desaparecen cuando las aciertas.",
+      "link": "Ver los exámenes"
+    },
+    "done": {
+      "title": "Cola vacía",
+      "body_one": "Has acertado la <fig>{{count}}</fig> pregunta de la cola. Ya no te queda ninguna pendiente.",
+      "body_other": "Has acertado las <fig>{{count}}</fig> preguntas de la cola. Ya no te queda ninguna pendiente."
+    }
+  },
+  "endless": {
+    "label": "Modo sin fin",
+    "answered": "respondidas",
+    "mixed": "exámenes en la mezcla",
+    "loading": "Cargando preguntas…",
+    "empty": {
+      "title": "No hay preguntas",
+      "body": "Ningún manifiesto ha respondido con exámenes."
+    }
+  },
+  "stats": {
+    "title": "Estadísticas",
+    "accuracy": "Acierto",
+    "submitted": "Entregados",
+    "queued": "En la cola",
+    "totalTime": "Tiempo total",
+    "empty": "Todavía no has entregado ningún examen, así que no hay nada que contar.",
+    "perExam": "Por examen",
+    "tries_one": "intento",
+    "tries_other": "intentos",
+    "delete": "Borrar",
+    "wipe": {
+      "title": "Borrar progreso",
+      "body": "Borrar el progreso elimina los intentos y las preguntas falladas. No se puede deshacer, así que exporta tus datos antes desde Ajustes si quieres conservarlos.",
+      "manifest": "Borrar {{label}}",
+      "all": "Borrar todo el progreso"
+    },
+    "confirm": {
+      "title": "Esto no se puede deshacer",
+      "all": "Se borrarán todos los intentos y toda la cola de preguntas falladas, de todos los manifiestos.",
+      "scope": "Se borrarán los intentos y las preguntas falladas de {{label}}.",
+      "submit": "Borrar"
+    },
+    "scope": {
+      "exam": "el examen {{number}}"
+    }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "theme": "Tema",
+    "themeSystem": "Como el sistema",
+    "reveal": {
+      "title": "Cuándo ver la respuesta",
+      "select": "Al elegir",
+      "selectHelp": "En repaso y sin fin, la respuesta correcta aparece en cuanto eliges una opción.",
+      "submit": "Al comprobar",
+      "submitHelp": "En repaso y sin fin, puedes cambiar de opción hasta que pulsas Comprobar."
+    },
+    "data": {
+      "title": "Tus datos",
+      "body": "Todo tu progreso vive en este navegador y en ningún otro sitio. Si borras los datos del sitio, se va con ellos. Expórtalo a un archivo para tener tu propia copia.",
+      "export": "Exportar",
+      "import": "Importar",
+      "imported": "Datos importados.",
+      "notJson": "Ese archivo no es un JSON.",
+      "newerVersion": "Ese archivo lo escribió una versión más nueva de la aplicación.",
+      "notExport": "Ese archivo no es una exportación de esta aplicación."
+    }
+  },
+  "manifests": {
+    "title": "Manifiestos",
+    "intro": "Un manifiesto es el índice de exámenes que la aplicación descarga. Puedes añadir cualquier URL que siga los esquemas de dgt-exam-scraper.",
+    "included": "incluido",
+    "active": "activo",
+    "use": "Usar este",
+    "remove": "Quitar",
+    "add": {
+      "title": "Añadir un manifiesto",
+      "placeholder": "https://raw.githubusercontent.com/usuario/repo/master/manifest.json",
+      "submit": "Añadir",
+      "checking": "Comprobando…"
+    },
+    "duplicate": "Ese manifiesto ya está en la lista.",
+    "invalid": "La URL tiene que empezar por http:// o https://."
+  },
+  "notFound": {
+    "title": "Esta página no existe",
+    "body": "Ups, no hay nada que ver aquí."
+  },
+  "shortcuts": {
+    "trigger": "Atajos",
+    "triggerLabel": "Ver los atajos de teclado",
+    "title": "Atajos de teclado",
+    "note": "Todo lo que hacen estos atajos está también en un botón.",
+    "answer": "Elegir la respuesta, hasta las que tenga la pregunta",
+    "advance": "Comprobar, entregar o avanzar, según el modo",
+    "next": "Siguiente pregunta",
+    "previous": "Pregunta anterior, solo en modo examen",
+    "closeDialog": "Cerrar el diálogo abierto",
+    "help": "Abrir y cerrar esta ayuda",
+    "escape": "Esc"
+  },
+  "errors": {
+    "examMissing": "El examen {{number}} no está en este manifiesto",
+    "network": {
+      "title": "No se ha podido conectar",
+      "detail": "El navegador no ha podido descargar {{url}}. O no hay conexión, o el servidor no permite peticiones desde esta web.",
+      "recovery": "Comprueba tu conexión y vuelve a intentarlo."
+    },
+    "http": {
+      "notFoundTitle": "El archivo no existe",
+      "serverTitle": "El servidor ha devuelto un error",
+      "detail": "{{url}} ha respondido {{status}}.",
+      "notFoundRecovery": "Revisa la URL del manifiesto.",
+      "serverRecovery": "Vuelve a intentarlo más tarde."
+    },
+    "parse": {
+      "title": "La respuesta no es un JSON",
+      "detail": "{{url}} no ha devuelto un JSON válido.",
+      "recovery": "Revisa el contenido de la URL."
+    },
+    "schema": {
+      "title": "El JSON no sigue el esquema",
+      "detail": "Es un JSON válido, pero no tiene el formato que espera la aplicación.",
+      "recovery": "Comprueba que el manifiesto sigue los esquemas de dgt-exam-scraper."
+    },
+    "unknown": {
+      "title": "Algo ha fallado",
+      "detail": "Error desconocido.",
+      "recovery": "Vuelve a cargar la página."
+    }
+  }
+}

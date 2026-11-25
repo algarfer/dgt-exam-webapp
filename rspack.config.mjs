@@ -1,5 +1,6 @@
 import { rspack } from "@rspack/core";
 import { ReactRefreshRspackPlugin } from "@rspack/plugin-react-refresh";
+import { htmlCopy } from "./scripts/locale.mjs";
 import { htmlColors } from "./scripts/palette.mjs";
 
 const isDev = process.env.NODE_ENV === "development";
@@ -64,7 +65,7 @@ export default {
     }),
     new rspack.HtmlRspackPlugin({
       template: "./src/index.html",
-      templateParameters: { publicPath, ...htmlColors },
+      templateParameters: { publicPath, ...htmlColors, ...htmlCopy },
     }),
     new rspack.CopyRspackPlugin({
       patterns: [{ from: "public", to: "public", noErrorOnMissing: true }],

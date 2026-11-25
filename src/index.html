@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>DGT Tests</title>
+    <title><%= appTitle %></title>
     <link rel="icon" type="image/svg+xml" href="<%= publicPath %>public/favicon.svg" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="<%= groundLight %>" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="<%= groundDark %>" />
     <meta
       name="description"
-      content="Aplicación para practicar los exámenes teóricos de conducir (DGT)"
+      content="<%= appDescription %>"
     />
     <script>
       (() => {
@@ -37,13 +37,12 @@
           line-height: 1.5;
         "
       >
-        <h1 style="font-size: 1.5rem; margin: 0 0 1rem">Necesitas JavaScript</h1>
+        <h1 style="font-size: 1.5rem; margin: 0 0 1rem"><%= noscriptTitle %></h1>
         <p style="margin: 0 0 0.5rem">
-          Esta aplicación te ayuda a preparar el examen teórico de la DGT.
-          Para su correcto funcionamiento es necesario tener habilitado JavaScript.
+          <%= noscriptBody %>
         </p>
         <p style="margin: 0; color: var(--ink-dim)">
-          Actívalo para los dominios de esta web y vuelve a cargar la página.
+          <%= noscriptHint %>
         </p>
       </div>
     </noscript>
