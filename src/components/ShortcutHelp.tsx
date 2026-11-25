@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ADVANCE_KEYS,
   ANSWER_KEYS,
@@ -29,17 +30,18 @@ function labels(keys: string[]): string[] {
   return [...seen];
 }
 
-const shortcuts = [
-  { keys: labels(ANSWER_KEYS), what: "Elegir la respuesta, hasta las que tenga la pregunta" },
-  { keys: labels(ADVANCE_KEYS), what: "Comprobar, entregar o avanzar, según el modo" },
-  { keys: labels(NEXT_KEYS), what: "Siguiente pregunta" },
-  { keys: labels(PREVIOUS_KEYS), what: "Pregunta anterior, solo en modo examen" },
-  { keys: ["Esc"], what: "Cerrar el diálogo abierto" },
-  { keys: labels(HELP_KEYS), what: "Abrir y cerrar esta ayuda" },
-];
-
 export function ShortcutHelp() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+
+  const shortcuts = [
+    { keys: labels(ANSWER_KEYS), what: t("shortcuts.answer") },
+    { keys: labels(ADVANCE_KEYS), what: t("shortcuts.advance") },
+    { keys: labels(NEXT_KEYS), what: t("shortcuts.next") },
+    { keys: labels(PREVIOUS_KEYS), what: t("shortcuts.previous") },
+    { keys: [t("shortcuts.escape")], what: t("shortcuts.closeDialog") },
+    { keys: labels(HELP_KEYS), what: t("shortcuts.help") },
+  ];
   const ref = useRef<HTMLDialogElement>(null);
 
   useKeybinds([{ keys: HELP_KEYS, run: () => setOpen(true) }]);
@@ -58,9 +60,9 @@ export function ShortcutHelp() {
         type="button"
         onClick={() => setOpen(true)}
         className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)] hover:text-[var(--ink)] motion-safe:transition-colors"
-        aria-label="Ver los atajos de teclado"
+        aria-label={t("shortcuts.triggerLabel")}
       >
-        Atajos
+        {t("shortcuts.trigger")}
       </button>
 
       <dialog
@@ -77,10 +79,8 @@ export function ShortcutHelp() {
         }}
         className="m-auto max-w-[52ch] border border-[var(--ink)] bg-[var(--ground)] p-interval text-[var(--ink)] backdrop:bg-black/60"
       >
-        <Heading level={2}>Atajos de teclado</Heading>
-        <p className="mt-dash text-sm text-[var(--ink-dim)]">
-          Todo lo que hacen estos atajos está también en un botón.
-        </p>
+        <Heading level={2}>{t("shortcuts.title")}</Heading>
+        <p className="mt-dash text-sm text-[var(--ink-dim)]">{t("shortcuts.note")}</p>
 
         <dl className="mt-interval space-y-dash">
           {shortcuts.map((shortcut) => (
@@ -101,7 +101,7 @@ export function ShortcutHelp() {
         </dl>
 
         <div className="mt-interval">
-          <Button onClick={() => setOpen(false)}>Cerrar</Button>
+          <Button onClick={() => setOpen(false)}>{t("common.close")}</Button>
         </div>
       </dialog>
     </>

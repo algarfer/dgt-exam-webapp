@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link, NavLink, Outlet, useLocation, useNavigation } from "react-router";
 import { cn } from "@/lib/cn";
 import { manifestLabel } from "@/lib/manifest-label";
@@ -5,18 +6,19 @@ import { activeManifestUrl, useStore } from "@/store/store";
 import { ShortcutHelp } from "./ShortcutHelp";
 import { ThemeToggle } from "./ThemeToggle";
 
-const routes = [
-  { to: "/", label: "Inicio" },
-  { to: "/exams", label: "Exámenes" },
-  { to: "/review", label: "Falladas" },
-  { to: "/endless", label: "Sin fin" },
-  { to: "/stats", label: "Estadísticas" },
-  { to: "/settings", label: "Ajustes" },
-];
+const routeKeys = [
+  { to: "/", key: "nav.home" },
+  { to: "/exams", key: "nav.exams" },
+  { to: "/review", key: "nav.review" },
+  { to: "/endless", key: "nav.endless" },
+  { to: "/stats", key: "nav.stats" },
+  { to: "/settings", key: "nav.settings" },
+] as const;
 
 const focusedRoutes = ["/review", "/endless"];
 
 export function Shell() {
+  const { t } = useTranslation();
   const manifestUrl = useStore(activeManifestUrl);
   const navigation = useNavigation();
   const loading = navigation.state === "loading";
@@ -33,7 +35,7 @@ export function Shell() {
               focused && "text-[var(--ink-dim)] hover:text-[var(--ink)]",
             )}
           >
-            DGT Tests
+            {t("app.title")}
           </Link>
 
           {focused ? null : (
@@ -41,7 +43,7 @@ export function Shell() {
               to="/manifests"
               className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)] hover:text-[var(--ink)] motion-safe:transition-colors"
             >
-              Manifiesto · {manifestLabel(manifestUrl)}
+              {t("nav.manifest", { label: manifestLabel(manifestUrl) })}
             </Link>
           )}
 
@@ -51,10 +53,10 @@ export function Shell() {
                 to="/"
                 className="text-[var(--ink-dim)] hover:text-[var(--ink)] motion-safe:transition-colors"
               >
-                Salir
+                {t("nav.exit")}
               </Link>
             ) : (
-              routes.map((route) => (
+              routeKeys.map((route) => (
                 <NavLink
                   key={route.to}
                   to={route.to}
@@ -67,7 +69,7 @@ export function Shell() {
                     )
                   }
                 >
-                  {route.label}
+                  {t(route.key)}
                 </NavLink>
               ))
             )}

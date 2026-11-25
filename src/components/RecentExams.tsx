@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import type { ManifestEntry } from "@/data/types";
 import { formatElapsed } from "@/hooks/useStopwatch";
 import { cn } from "@/lib/cn";
@@ -59,6 +60,7 @@ const cell = "border-t border-[var(--seam-color)] py-gap align-baseline";
 const figures = cn(cell, "w-[7rem] text-end text-[var(--ink-dim)]");
 
 export function RecentExams({ manifestId, exams, limit = 6 }: RecentExamsProps) {
+  const { t } = useTranslation();
   const progress = useStore((state) => state.progress);
   const rows = rowsFor(exams, progress, manifestId, limit);
 
@@ -70,21 +72,21 @@ export function RecentExams({ manifestId, exams, limit = 6 }: RecentExamsProps) 
 
       <div className="flex flex-wrap items-baseline gap-gap pb-dash pt-interval">
         <Heading level={2} className="text-xs uppercase tracking-[0.18em] text-[var(--ink-dim)]">
-          Últimos exámenes
+          {t("recent.title")}
         </Heading>
         <span className="ms-auto font-mono text-xs text-[var(--ink-dim)]">
-          último · mejor · intentos
+          {t("recent.legend")}
         </span>
       </div>
 
       <table className="w-full border-collapse font-mono text-sm">
         <thead className="sr-only">
           <tr>
-            <th scope="col">Examen</th>
-            <th scope="col">Título</th>
-            <th scope="col">Preguntas</th>
-            <th scope="col">Tiempo</th>
-            <th scope="col">Último, mejor e intentos</th>
+            <th scope="col">{t("recent.columns.exam")}</th>
+            <th scope="col">{t("recent.columns.title")}</th>
+            <th scope="col">{t("recent.columns.questions")}</th>
+            <th scope="col">{t("recent.columns.time")}</th>
+            <th scope="col">{t("recent.columns.summary")}</th>
           </tr>
         </thead>
 
@@ -95,7 +97,7 @@ export function RecentExams({ manifestId, exams, limit = 6 }: RecentExamsProps) 
                 {row.number}
               </td>
               <td className={cn(cell, "min-w-0 font-sans")}>{row.title}</td>
-              <td className={figures}>{row.last.total} preg.</td>
+              <td className={figures}>{t("recent.questions", { count: row.last.total })}</td>
               <td className={figures}>{formatElapsed(row.last.seconds)}</td>
               <td className={figures}>
                 <span className="text-[var(--ink)]">
