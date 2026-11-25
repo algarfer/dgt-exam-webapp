@@ -1,0 +1,42 @@
+{
+  "comment": "Single source of truth for colour.",
+  "colors": {
+    "asphalt": "#1c1d1a",
+    "asphalt-raised": "#22241f",
+    "seam": "#4a4e48",
+    "seam-faint": "#32352f",
+    "paint": "#f4f2ec",
+    "paint-dim": "#8a8f86",
+    "temporary": "#f2c230",
+    "concrete": "#d9d7cf",
+    "concrete-raised": "#e6e4dd",
+    "kerb": "#a8a6a0",
+    "ink": "#1c1d1a",
+    "ink-dim": "#5a5d55",
+    "hazard": "#c8102e"
+  },
+  "themes": {
+    "light": {
+      "scheme": "light",
+      "roles": {
+        "ground": "concrete",
+        "ground-raised": "concrete-raised",
+        "ink": "ink",
+        "ink-dim": "ink-dim",
+        "line": "ink",
+        "seam-color": "kerb"
+      }
+    },
+    "dark": {
+      "scheme": "dark",
+      "roles": {
+        "ground": "asphalt",
+        "ground-raised": "asphalt-raised",
+        "ink": "paint",
+        "ink-dim": "paint-dim",
+        "line": "paint",
+        "seam-color": "seam"
+      }
+    }
+  }
+}

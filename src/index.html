@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DGT Tests</title>
     <link rel="icon" type="image/svg+xml" href="<%= publicPath %>public/favicon.svg" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#d9d7cf" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1d1a" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="<%= groundLight %>" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="<%= groundDark %>" />
     <meta
       name="description"
       content="Aplicación para practicar los exámenes teóricos de conducir (DGT)"
@@ -42,7 +42,7 @@
           Esta aplicación te ayuda a preparar el examen teórico de la DGT.
           Para su correcto funcionamiento es necesario tener habilitado JavaScript.
         </p>
-        <p style="margin: 0; color: #5a5d55">
+        <p style="margin: 0; color: var(--ink-dim)">
           Actívalo para los dominios de esta web y vuelve a cargar la página.
         </p>
       </div>

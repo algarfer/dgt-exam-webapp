@@ -6,8 +6,9 @@
   "license": "MIT",
   "scripts": {
     "schemas": "bun run scripts/fetch-schemas.ts",
-    "dev": "NODE_ENV=development rspack serve",
-    "build": "rspack build && bun run scripts/copy-404.ts",
+    "palette": "bun run scripts/build-palette.ts",
+    "dev": "bun run palette && NODE_ENV=development rspack serve",
+    "build": "bun run palette && rspack build && bun run scripts/copy-404.ts",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "format": "biome check --write .",
