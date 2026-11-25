@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { Heading } from "@/components/ui/Heading";
 import { cn } from "@/lib/cn";
@@ -6,24 +7,7 @@ import { downloadExport, readImportFile } from "@/store/export";
 import { useStore } from "@/store/store";
 import type { RevealMode, Theme } from "@/store/types";
 
-const themes: { value: Theme; label: string }[] = [
-  { value: "system", label: "Como el sistema" },
-  { value: "light", label: "Claro" },
-  { value: "dark", label: "Oscuro" },
-];
-
-const reveals: { value: RevealMode; label: string; help: string }[] = [
-  {
-    value: "select",
-    label: "Al elegir",
-    help: "En repaso y sin fin, la respuesta correcta aparece en cuanto eliges una opción.",
-  },
-  {
-    value: "submit",
-    label: "Al comprobar",
-    help: "En repaso y sin fin, puedes cambiar de opción hasta que pulsas Comprobar.",
-  },
-];
+type Option<T extends string> = { value: T; label: string };
 
 function Choice<T extends string>({
   options,
@@ -69,6 +53,7 @@ function Choice<T extends string>({
 }
 
 export function Settings() {
+  const { t } = useTranslation();
   const settings = useStore((state) => state.settings);
   const setTheme = useStore((state) => state.setTheme);
   const setReveal = useStore((state) => state.setReveal);
@@ -84,56 +69,71 @@ export function Settings() {
 
     try {
       replaceState(await readImportFile(file));
-      setNotice("Datos importados.");
+      setNotice(t("settings.data.imported"));
     } catch (error) {
       const reason = error instanceof Error ? error.message : "unknown";
       setProblem(
         reason === "not-json"
-          ? "Ese archivo no es un JSON."
+          ? t("settings.data.notJson")
           : reason === "newer-version"
-            ? "Ese archivo lo escribió una versión más nueva de la aplicación."
-            : "Ese archivo no es una exportación de esta aplicación.",
+            ? t("settings.data.newerVersion")
+            : t("settings.data.notExport"),
       );
     }
   };
+
+  const themes: Option<Theme>[] = [
+    { value: "system", label: t("settings.themeSystem") },
+    { value: "light", label: t("theme.light") },
+    { value: "dark", label: t("theme.dark") },
+  ];
+
+  const reveals: (Option<RevealMode> & { help: string })[] = [
+    { value: "select", label: t("settings.reveal.select"), help: t("settings.reveal.selectHelp") },
+    { value: "submit", label: t("settings.reveal.submit"), help: t("settings.reveal.submitHelp") },
+  ];
 
   const reveal = reveals.find((option) => option.value === settings.reveal);
 
   return (
     <section className="py-run">
-      <Heading>Ajustes</Heading>
+      <Heading>{t("settings.title")}</Heading>
 
       <Heading level={2} className="mt-run">
-        Tema
+        {t("settings.theme")}
       </Heading>
-      <Choice options={themes} value={settings.theme} onChange={setTheme} name="Tema" />
+      <Choice
+        options={themes}
+        value={settings.theme}
+        onChange={setTheme}
+        name={t("settings.theme")}
+      />
 
       <Heading level={2} className="mt-run">
-        Cuándo ver la respuesta
+        {t("settings.reveal.title")}
       </Heading>
       <Choice
         options={reveals}
         value={settings.reveal}
         onChange={setReveal}
-        name="Cuándo ver la respuesta"
+        name={t("settings.reveal.title")}
       />
       {reveal ? (
         <p className="mt-dash max-w-[65ch] text-sm text-[var(--ink-dim)]">{reveal.help}</p>
       ) : null}
 
       <Heading level={2} className="mt-run">
-        Tus datos
+        {t("settings.data.title")}
       </Heading>
-      <p className="mt-gap max-w-[65ch] text-sm text-[var(--ink-dim)]">
-        Todo tu progreso vive en este navegador y en ningún otro sitio. Si borras los datos del
-        sitio, se va con ellos. Expórtalo a un archivo para tener tu propia copia.
-      </p>
+      <p className="mt-gap max-w-[65ch] text-sm text-[var(--ink-dim)]">{t("settings.data.body")}</p>
 
       <div className="mt-interval flex flex-wrap items-center gap-gap">
-        <Button onClick={() => downloadExport(useStore.getState())}>Exportar</Button>
+        <Button onClick={() => downloadExport(useStore.getState())}>
+          {t("settings.data.export")}
+        </Button>
 
         <Button variant="secondary" onClick={() => fileInput.current?.click()}>
-          Importar
+          {t("settings.data.import")}
         </Button>
 
         <input

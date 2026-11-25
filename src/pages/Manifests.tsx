@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { Heading } from "@/components/ui/Heading";
 import { rail } from "@/components/ui/Rail";
@@ -9,6 +10,7 @@ import { manifestId } from "@/lib/manifest-id";
 import { activeManifestUrl, DEFAULT_MANIFEST_ID, manifestUrls, useStore } from "@/store/store";
 
 export function Manifests() {
+  const { t } = useTranslation();
   const state = useStore();
   const active = manifestId(activeManifestUrl(state));
 
@@ -38,11 +40,7 @@ export function Manifests() {
 
     const result = state.addManifest(candidate);
     if (!result.ok) {
-      setProblem(
-        result.reason === "duplicate"
-          ? "Ese manifiesto ya está en la lista."
-          : "La URL tiene que empezar por http:// o https://.",
-      );
+      setProblem(result.reason === "duplicate" ? t("manifests.duplicate") : t("manifests.invalid"));
       return;
     }
 
@@ -51,11 +49,8 @@ export function Manifests() {
 
   return (
     <section className="py-run">
-      <Heading>Manifiestos</Heading>
-      <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">
-        Un manifiesto es el índice de exámenes que la aplicación descarga. Puedes añadir cualquier
-        URL que siga los esquemas de dgt-exam-scraper.
-      </p>
+      <Heading>{t("manifests.title")}</Heading>
+      <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">{t("manifests.intro")}</p>
 
       <ul className="mt-run">
         {urls.map((candidate) => {
@@ -75,21 +70,23 @@ export function Manifests() {
 
               {isDefault ? (
                 <span className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)]">
-                  incluido
+                  {t("manifests.included")}
                 </span>
               ) : null}
 
               {id === active ? (
-                <span className="text-xs uppercase tracking-[0.1em] text-temporary">activo</span>
+                <span className="text-xs uppercase tracking-[0.1em] text-temporary">
+                  {t("manifests.active")}
+                </span>
               ) : (
                 <Button variant="secondary" onClick={() => state.setActiveManifest(id)}>
-                  Usar este
+                  {t("manifests.use")}
                 </Button>
               )}
 
               {isDefault ? null : (
                 <Button variant="danger" onClick={() => state.removeManifest(id)}>
-                  Quitar
+                  {t("manifests.remove")}
                 </Button>
               )}
             </li>
@@ -104,18 +101,18 @@ export function Manifests() {
           void add();
         }}
       >
-        <Heading level={3}>Añadir un manifiesto</Heading>
+        <Heading level={3}>{t("manifests.add.title")}</Heading>
 
         <div className="mt-gap flex flex-wrap gap-gap">
           <input
             type="url"
             value={url}
             onChange={(event) => setUrl(event.target.value)}
-            placeholder="https://raw.githubusercontent.com/usuario/repo/master/manifest.json"
+            placeholder={t("manifests.add.placeholder")}
             className="min-w-0 flex-1 border border-[var(--seam-color)] bg-transparent px-gap py-dash font-mono text-sm focus:border-[var(--ink)] focus:outline-none"
           />
           <Button type="submit" disabled={checking || url.trim().length === 0}>
-            {checking ? "Comprobando…" : "Añadir"}
+            {checking ? t("manifests.add.checking") : t("manifests.add.submit")}
           </Button>
         </div>
 

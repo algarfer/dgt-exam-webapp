@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { Link, useRouteError } from "react-router";
 import { Heading } from "@/components/ui/Heading";
 import { errorCopy } from "@/lib/error-copy";
 
 export function RouteError() {
+  const { t } = useTranslation();
   const { title, detail, recovery, details } = errorCopy(useRouteError());
 
   return (
@@ -20,7 +22,7 @@ export function RouteError() {
       ) : null}
 
       <Link to="/" className="mt-interval inline-block underline">
-        Volver al inicio
+        {t("common.backHome")}
       </Link>
     </section>
   );

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { QuestionCard } from "@/components/QuestionCard";
 import { TurnControls } from "@/components/TurnControls";
@@ -11,6 +12,7 @@ import { randomSeed, shuffled } from "@/lib/shuffle";
 import { useStore } from "@/store/store";
 
 export function Review() {
+  const { t } = useTranslation();
   const failed = useStore((state) => state.failed);
   const setReveal = useStore((state) => state.setReveal);
 
@@ -60,13 +62,10 @@ export function Review() {
   if (Object.keys(snapshots).length === 0) {
     return (
       <section className="py-run">
-        <Heading>No tienes preguntas falladas</Heading>
-        <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">
-          Aquí aparecen las preguntas que falles en cualquier modo, y solo desaparecen cuando las
-          aciertas.
-        </p>
+        <Heading>{t("review.empty.title")}</Heading>
+        <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">{t("review.empty.body")}</p>
         <Link to="/exams" className="mt-interval inline-block underline">
-          Ver los exámenes
+          {t("review.empty.link")}
         </Link>
       </section>
     );
@@ -75,13 +74,12 @@ export function Review() {
   if (!question) {
     return (
       <section className="py-run">
-        <Heading>Cola vacía</Heading>
+        <Heading>{t("review.done.title")}</Heading>
         <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">
-          Has acertado las <Figure>{cleared}</Figure> preguntas de la cola. Ya no te queda ninguna
-          pendiente.
+          <Trans i18nKey="review.done.body" count={cleared} components={{ fig: <Figure /> }} />
         </p>
         <Link to="/" className="mt-interval inline-block underline">
-          Volver al inicio
+          {t("common.backHome")}
         </Link>
       </section>
     );
@@ -91,11 +89,11 @@ export function Review() {
     <section className="pt-run">
       <div className="flex flex-wrap items-baseline justify-between gap-gap">
         <p className="text-xs uppercase tracking-[0.12em] text-[var(--ink-dim)]">
-          Repaso de preguntas
+          {t("review.label")}
         </p>
         <p className="text-sm text-[var(--ink-dim)]">
-          <Figure className="text-[var(--ink)]">{queue.length}</Figure> en cola ·{" "}
-          <Figure className="text-[var(--ink)]">{cleared}</Figure> resueltas
+          <Figure className="text-[var(--ink)]">{queue.length}</Figure> {t("review.queued")} ·{" "}
+          <Figure className="text-[var(--ink)]">{cleared}</Figure> {t("review.cleared")}
         </p>
       </div>
 
@@ -114,9 +112,7 @@ export function Review() {
         canSubmit={turn.selected !== null}
         onSubmit={turn.submit}
         onNext={advance}
-        nextLabel={
-          turn.revealed && !turn.wasCorrect ? "Siguiente, esta vuelve" : "Siguiente pregunta"
-        }
+        nextLabel={turn.revealed && !turn.wasCorrect ? t("review.nextReturns") : t("turn.next")}
         onToggleReveal={() => setReveal(turn.reveal === "select" ? "submit" : "select")}
       />
     </section>

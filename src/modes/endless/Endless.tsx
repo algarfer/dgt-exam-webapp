@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useLoaderData } from "react-router";
 import { QuestionCard } from "@/components/QuestionCard";
 import { TurnControls } from "@/components/TurnControls";
@@ -40,6 +41,7 @@ export async function endlessLoader(): Promise<EndlessData> {
 }
 
 export function Endless() {
+  const { t } = useTranslation();
   const { refs } = useLoaderData() as EndlessData;
   const setReveal = useStore((state) => state.setReveal);
 
@@ -114,10 +116,8 @@ export function Endless() {
   if (order.length === 0) {
     return (
       <section className="py-run">
-        <Heading>No hay preguntas</Heading>
-        <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">
-          Ningún manifiesto ha respondido con exámenes.
-        </p>
+        <Heading>{t("endless.empty.title")}</Heading>
+        <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">{t("endless.empty.body")}</p>
       </section>
     );
   }
@@ -136,10 +136,12 @@ export function Endless() {
   return (
     <section className="pt-run">
       <div className="flex flex-wrap items-baseline justify-between gap-gap">
-        <p className="text-xs uppercase tracking-[0.12em] text-[var(--ink-dim)]">Modo sin fin</p>
+        <p className="text-xs uppercase tracking-[0.12em] text-[var(--ink-dim)]">
+          {t("endless.label")}
+        </p>
         <p className="text-sm text-[var(--ink-dim)]">
-          <Figure className="text-[var(--ink)]">{answered}</Figure> respondidas ·{" "}
-          <Figure className="text-[var(--ink)]">{order.length}</Figure> exámenes en la mezcla
+          <Figure className="text-[var(--ink)]">{answered}</Figure> {t("endless.answered")} ·{" "}
+          <Figure className="text-[var(--ink)]">{order.length}</Figure> {t("endless.mixed")}
         </p>
       </div>
 
@@ -164,7 +166,7 @@ export function Endless() {
           />
         </>
       ) : (
-        <p className="mt-run text-[var(--ink-dim)]">Cargando preguntas…</p>
+        <p className="mt-run text-[var(--ink-dim)]">{t("endless.loading")}</p>
       )}
     </section>
   );

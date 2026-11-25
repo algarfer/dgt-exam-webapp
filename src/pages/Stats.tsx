@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { Button } from "@/components/ui/Button";
 import { Figure } from "@/components/ui/Figure";
@@ -35,6 +36,7 @@ function parseRows(progress: Record<string, Attempt[]>): Row[] {
 }
 
 export function Stats() {
+  const { t } = useTranslation();
   const progress = useStore((state) => state.progress);
   const failed = useStore((state) => state.failed);
   const wipeExam = useStore((state) => state.wipeExam);
@@ -63,11 +65,13 @@ export function Stats() {
 
   return (
     <section className="py-run">
-      <Heading>Estadísticas</Heading>
+      <Heading>{t("stats.title")}</Heading>
 
       <dl className="mt-interval grid grid-cols-2 gap-interval sm:grid-cols-4">
         <div>
-          <dt className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)]">Acierto</dt>
+          <dt className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)]">
+            {t("stats.accuracy")}
+          </dt>
           <dd>
             <Figure size="lead">
               {answered > 0 ? Math.round((correct / answered) * 100) : 0}%
@@ -75,13 +79,17 @@ export function Stats() {
           </dd>
         </div>
         <div>
-          <dt className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)]">Entregados</dt>
+          <dt className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)]">
+            {t("stats.submitted")}
+          </dt>
           <dd>
             <Figure size="lead">{attempts.length}</Figure>
           </dd>
         </div>
         <div>
-          <dt className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)]">En la cola</dt>
+          <dt className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)]">
+            {t("stats.queued")}
+          </dt>
           <dd>
             <Figure size="lead" className={backlog.length > 0 ? "text-temporary" : undefined}>
               {backlog.length}
@@ -89,7 +97,9 @@ export function Stats() {
           </dd>
         </div>
         <div>
-          <dt className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)]">Tiempo total</dt>
+          <dt className="text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)]">
+            {t("stats.totalTime")}
+          </dt>
           <dd>
             <Figure size="lead">{formatElapsed(seconds)}</Figure>
           </dd>
@@ -97,13 +107,11 @@ export function Stats() {
       </dl>
 
       {rows.length === 0 ? (
-        <p className="mt-run max-w-[65ch] text-[var(--ink-dim)]">
-          Todavía no has entregado ningún examen, así que no hay nada que contar.
-        </p>
+        <p className="mt-run max-w-[65ch] text-[var(--ink-dim)]">{t("stats.empty")}</p>
       ) : (
         <>
           <Heading level={2} className="mt-run">
-            Por examen
+            {t("stats.perExam")}
           </Heading>
 
           <ul className="mt-gap">
@@ -130,7 +138,7 @@ export function Stats() {
                       {last?.correct}/{last?.total}
                     </Figure>{" "}
                     · <Figure>{row.attempts.length}</Figure>{" "}
-                    {row.attempts.length === 1 ? "intento" : "intentos"}
+                    {t("stats.tries", { count: row.attempts.length })}
                   </span>
                   <Button
                     variant="danger"
@@ -139,11 +147,11 @@ export function Stats() {
                         kind: "exam",
                         manifestId: row.manifestId,
                         examNumber: row.examNumber,
-                        label: `el examen ${row.examNumber}`,
+                        label: t("stats.scope.exam", { number: row.examNumber }),
                       })
                     }
                   >
-                    Borrar
+                    {t("stats.delete")}
                   </Button>
                 </li>
               );
@@ -153,12 +161,9 @@ export function Stats() {
       )}
 
       <Heading level={2} className="mt-run">
-        Borrar progreso
+        {t("stats.wipe.title")}
       </Heading>
-      <p className="mt-gap max-w-[65ch] text-sm text-[var(--ink-dim)]">
-        Borrar el progreso elimina los intentos y las preguntas falladas. No se puede deshacer, así
-        que exporta tus datos antes desde Ajustes si quieres conservarlos.
-      </p>
+      <p className="mt-gap max-w-[65ch] text-sm text-[var(--ink-dim)]">{t("stats.wipe.body")}</p>
 
       <div className="mt-interval flex flex-wrap gap-gap">
         {manifests.map((id) => (
@@ -169,25 +174,25 @@ export function Stats() {
               setPending({ kind: "manifest", manifestId: id, label: manifestLabel(id) })
             }
           >
-            Borrar {manifestLabel(id)}
+            {t("stats.wipe.manifest", { label: manifestLabel(id) })}
           </Button>
         ))}
         <Button variant="danger" onClick={() => setPending({ kind: "all" })}>
-          Borrar todo el progreso
+          {t("stats.wipe.all")}
         </Button>
       </div>
 
       <ConfirmDialog
         open={pending !== null}
         destructive
-        title="Esto no se puede deshacer"
+        title={t("stats.confirm.title")}
         body={
           pending?.kind === "all"
-            ? "Se borrarán todos los intentos y toda la cola de preguntas falladas, de todos los manifiestos."
-            : `Se borrarán los intentos y las preguntas falladas de ${pending?.kind ? pending.label : ""}.`
+            ? t("stats.confirm.all")
+            : t("stats.confirm.scope", { label: pending?.kind ? pending.label : "" })
         }
-        confirmLabel="Borrar"
-        cancelLabel="Cancelar"
+        confirmLabel={t("stats.confirm.submit")}
+        cancelLabel={t("common.cancel")}
         onConfirm={confirm}
         onCancel={() => setPending(null)}
       />

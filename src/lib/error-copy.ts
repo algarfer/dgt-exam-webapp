@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { HttpError, NetworkError, ParseError, SchemaValidationError } from "@/data/errors";
 
 export type ErrorCopy = {
@@ -10,41 +11,42 @@ export type ErrorCopy = {
 export function errorCopy(error: unknown): ErrorCopy {
   if (error instanceof NetworkError) {
     return {
-      title: "No se ha podido conectar",
-      detail: `El navegador no ha podido descargar ${error.url}. O no hay conexión, o el servidor no permite peticiones desde esta web.`,
-      recovery: "Comprueba tu conexión y vuelve a intentarlo.",
+      title: t("errors.network.title"),
+      detail: t("errors.network.detail", { url: error.url }),
+      recovery: t("errors.network.recovery"),
     };
   }
 
   if (error instanceof HttpError) {
+    const missing = error.status === 404;
+
     return {
-      title: error.status === 404 ? "El archivo no existe" : "El servidor ha devuelto un error",
-      detail: `${error.url} ha respondido ${error.status}.`,
-      recovery:
-        error.status === 404 ? "Revisa la URL del manifiesto." : "Vuelve a intentarlo más tarde.",
+      title: missing ? t("errors.http.notFoundTitle") : t("errors.http.serverTitle"),
+      detail: t("errors.http.detail", { url: error.url, status: error.status }),
+      recovery: missing ? t("errors.http.notFoundRecovery") : t("errors.http.serverRecovery"),
     };
   }
 
   if (error instanceof ParseError) {
     return {
-      title: "La respuesta no es un JSON",
-      detail: `${error.url} no ha devuelto un JSON válido.`,
-      recovery: "Revisa el contenido de la URL.",
+      title: t("errors.parse.title"),
+      detail: t("errors.parse.detail", { url: error.url }),
+      recovery: t("errors.parse.recovery"),
     };
   }
 
   if (error instanceof SchemaValidationError) {
     return {
-      title: "El JSON no sigue el esquema",
-      detail: "Es un JSON válido, pero no tiene el formato que espera la aplicación.",
-      recovery: "Comprueba que el manifiesto sigue los esquemas de dgt-exam-scraper.",
+      title: t("errors.schema.title"),
+      detail: t("errors.schema.detail"),
+      recovery: t("errors.schema.recovery"),
       details: error.details,
     };
   }
 
   return {
-    title: "Algo ha fallado",
-    detail: error instanceof Error ? error.message : "Error desconocido.",
-    recovery: "Vuelve a cargar la página.",
+    title: t("errors.unknown.title"),
+    detail: error instanceof Error ? error.message : t("errors.unknown.detail"),
+    recovery: t("errors.unknown.recovery"),
   };
 }
