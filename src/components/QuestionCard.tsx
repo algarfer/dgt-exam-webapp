@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Figure } from "@/components/ui/Figure";
 import type { PreparedQuestion } from "@/lib/prepare";
 import { AnswerList } from "./AnswerList";
@@ -17,11 +18,13 @@ export function QuestionCard({
   onSelect,
   position,
 }: QuestionCardProps) {
+  const { t } = useTranslation();
+
   return (
     <article>
       <p className="flex flex-wrap items-baseline gap-x-gap text-xs uppercase tracking-[0.12em] text-[var(--ink-dim)]">
         <span>
-          Examen <Figure>{question.examNumber}</Figure> · {question.examTitle}
+          {t("question.exam")} <Figure>{question.examNumber}</Figure> · {question.examTitle}
         </span>
         {position ? <span>{position}</span> : null}
       </p>

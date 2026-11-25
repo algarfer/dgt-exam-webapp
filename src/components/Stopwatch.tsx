@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { formatElapsed } from "@/hooks/useStopwatch";
 import { Figure } from "./ui/Figure";
 
@@ -9,18 +10,20 @@ type StopwatchProps = {
 };
 
 export function Stopwatch({ seconds, answered, total, allowed }: StopwatchProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-wrap items-baseline gap-x-gap gap-y-dash">
-      <Figure size="lead" aria-label={`Tiempo transcurrido ${formatElapsed(seconds)}`}>
+      <Figure size="lead" aria-label={t("stopwatch.elapsed", { time: formatElapsed(seconds) })}>
         {formatElapsed(seconds)}
       </Figure>
 
       <p className="text-sm text-[var(--ink-dim)]">
-        Respondidas{" "}
+        {t("stopwatch.answered")}{" "}
         <Figure className="text-[var(--ink)]">
           {answered}/{total}
         </Figure>{" "}
-        · Fallos permitidos <Figure className="text-[var(--ink)]">{allowed}</Figure>
+        · {t("stopwatch.allowed")} <Figure className="text-[var(--ink)]">{allowed}</Figure>
       </p>
     </div>
   );

@@ -11,20 +11,24 @@ import {
 import { Button } from "./ui/Button";
 import { Heading } from "./ui/Heading";
 
-const named: Record<string, string> = {
-  " ": "Espacio",
-  ArrowRight: "→",
-  ArrowLeft: "←",
-  ArrowDown: "↓",
-  ArrowUp: "↑",
+const arrows: Record<string, string> = {
+  ArrowRight: "\u2192",
+  ArrowLeft: "\u2190",
+  ArrowDown: "\u2193",
+  ArrowUp: "\u2191",
 };
 
 /** Read off the real bindings, so this list cannot drift from them. */
-function labels(keys: string[]): string[] {
+function labels(keys: string[], space: string): string[] {
   const seen = new Set<string>();
 
   for (const key of keys) {
-    seen.add(named[key] ?? (key.length === 1 ? key.toUpperCase() : key));
+    if (key === " ") {
+      seen.add(space);
+      continue;
+    }
+
+    seen.add(arrows[key] ?? (key.length === 1 ? key.toUpperCase() : key));
   }
 
   return [...seen];
@@ -34,13 +38,14 @@ export function ShortcutHelp() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
+  const space = t("shortcuts.space");
   const shortcuts = [
-    { keys: labels(ANSWER_KEYS), what: t("shortcuts.answer") },
-    { keys: labels(ADVANCE_KEYS), what: t("shortcuts.advance") },
-    { keys: labels(NEXT_KEYS), what: t("shortcuts.next") },
-    { keys: labels(PREVIOUS_KEYS), what: t("shortcuts.previous") },
+    { keys: labels(ANSWER_KEYS, space), what: t("shortcuts.answer") },
+    { keys: labels(ADVANCE_KEYS, space), what: t("shortcuts.advance") },
+    { keys: labels(NEXT_KEYS, space), what: t("shortcuts.next") },
+    { keys: labels(PREVIOUS_KEYS, space), what: t("shortcuts.previous") },
     { keys: [t("shortcuts.escape")], what: t("shortcuts.closeDialog") },
-    { keys: labels(HELP_KEYS), what: t("shortcuts.help") },
+    { keys: labels(HELP_KEYS, space), what: t("shortcuts.help") },
   ];
   const ref = useRef<HTMLDialogElement>(null);
 

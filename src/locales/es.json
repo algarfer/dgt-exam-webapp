@@ -224,7 +224,8 @@
     "previous": "Pregunta anterior, solo en modo examen",
     "closeDialog": "Cerrar el diálogo abierto",
     "help": "Abrir y cerrar esta ayuda",
-    "escape": "Esc"
+    "escape": "Esc",
+    "space": "Espacio"
   },
   "errors": {
     "examMissing": "El examen {{number}} no está en este manifiesto",

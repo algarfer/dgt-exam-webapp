@@ -1,4 +1,6 @@
+import { t as translate } from "i18next";
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, type LoaderFunctionArgs, useLoaderData, useSearchParams } from "react-router";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { QuestionCard } from "@/components/QuestionCard";
@@ -36,7 +38,9 @@ export async function examRunLoader({ params }: LoaderFunctionArgs): Promise<Exa
 
   const entry = manifest.exams.find((candidate) => candidate.number === number);
   if (!entry) {
-    throw new Response(`El examen ${params.number} no está en este manifiesto`, { status: 404 });
+    throw new Response(translate("errors.examMissing", { number: params.number }), {
+      status: 404,
+    });
   }
 
   return {
@@ -47,6 +51,7 @@ export async function examRunLoader({ params }: LoaderFunctionArgs): Promise<Exa
 }
 
 export function ExamRun() {
+  const { t } = useTranslation();
   const { exam, manifestUrl, examHref } = useLoaderData() as ExamRunData;
   const [params] = useSearchParams();
   const studying = params.get("mode") !== "exam";
@@ -133,10 +138,10 @@ export function ExamRun() {
     <section className="pt-run">
       <div className="flex flex-wrap items-baseline justify-between gap-gap">
         <p className="text-xs uppercase tracking-[0.12em] text-[var(--ink-dim)]">
-          {studying ? "Modo estudio" : "Modo examen"} · {exam.title}
+          {studying ? t("examRun.studyMode") : t("examRun.examMode")} · {exam.title}
         </p>
         <Link to="/exams" className="text-sm underline">
-          Salir del test
+          {t("examRun.exit")}
         </Link>
       </div>
 
@@ -168,17 +173,17 @@ export function ExamRun() {
           selected={selected}
           revealed={revealed}
           onSelect={select}
-          position={`Pregunta ${index + 1} de ${questions.length}`}
+          position={t("examRun.position", { current: index + 1, total: questions.length })}
         />
       </div>
 
       <nav className="mt-run flex flex-wrap items-center gap-gap border-t border-[var(--seam-color)] pt-gap">
         <Button variant="secondary" onClick={goPrevious} disabled={index === 0}>
-          Anterior
+          {t("examRun.previous")}
         </Button>
 
         <Button onClick={goNext} disabled={index >= questions.length - 1}>
-          Siguiente
+          {t("examRun.next")}
         </Button>
 
         {!studying && !submitted ? (
@@ -186,7 +191,7 @@ export function ExamRun() {
             variant="secondary"
             onClick={() => (missing > 0 ? setAskingSubmit(true) : finish())}
           >
-            Enviar
+            {t("examRun.submit")}
           </Button>
         ) : null}
 
@@ -199,10 +204,10 @@ export function ExamRun() {
 
       <ConfirmDialog
         open={askingSubmit}
-        title="Te quedan preguntas sin responder"
-        body={`Hay ${missing} ${missing === 1 ? "pregunta" : "preguntas"} sin responder de ${questions.length}. Si entregas ahora ${missing === 1 ? "contará" : "contarán"} como falladas.`}
-        confirmLabel="Enviar de todas formas"
-        cancelLabel="Seguir respondiendo"
+        title={t("examRun.confirm.title")}
+        body={t("examRun.confirm.body", { count: missing, total: questions.length })}
+        confirmLabel={t("examRun.confirm.submit")}
+        cancelLabel={t("examRun.confirm.cancel")}
         onConfirm={finish}
         onCancel={() => setAskingSubmit(false)}
       />

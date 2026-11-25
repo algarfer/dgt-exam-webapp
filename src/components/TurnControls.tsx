@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import type { RevealMode } from "@/store/types";
 import { Button } from "./ui/Button";
 
@@ -17,19 +18,21 @@ export function TurnControls({
   canSubmit,
   onSubmit,
   onNext,
-  nextLabel = "Siguiente pregunta",
+  nextLabel,
   onToggleReveal,
 }: TurnControlsProps) {
+  const { t } = useTranslation();
+
   return (
     <nav className="mt-run flex flex-wrap items-center gap-gap border-t border-[var(--seam-color)] pt-gap">
       {reveal === "submit" && !revealed ? (
         <Button onClick={onSubmit} disabled={!canSubmit}>
-          Comprobar
+          {t("turn.check")}
         </Button>
       ) : null}
 
       <Button variant={revealed ? "primary" : "secondary"} onClick={onNext}>
-        {nextLabel}
+        {nextLabel ?? t("turn.next")}
       </Button>
 
       <button
@@ -37,7 +40,7 @@ export function TurnControls({
         onClick={onToggleReveal}
         className="ms-auto text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)] underline hover:text-[var(--ink)]"
       >
-        {reveal === "select" ? "Ver respuesta al seleccionar" : "Ver respuesta al enviar"}
+        {reveal === "select" ? t("turn.revealOnSelect") : t("turn.revealOnSubmit")}
       </button>
     </nav>
   );

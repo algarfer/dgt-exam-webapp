@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "./ui/Button";
 import { Heading } from "./ui/Heading";
 
@@ -19,11 +20,12 @@ export function ConfirmDialog({
   title,
   body,
   confirmLabel,
-  cancelLabel = "Volver",
+  cancelLabel,
   destructive = false,
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -51,7 +53,7 @@ export function ConfirmDialog({
           {confirmLabel}
         </Button>
         <Button variant="secondary" onClick={onCancel}>
-          {cancelLabel}
+          {cancelLabel ?? t("common.back")}
         </Button>
       </div>
     </dialog>

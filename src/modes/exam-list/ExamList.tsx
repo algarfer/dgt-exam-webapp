@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link, useLoaderData } from "react-router";
 import { Figure } from "@/components/ui/Figure";
 import { Heading } from "@/components/ui/Heading";
@@ -29,17 +30,15 @@ function best(attempts: Attempt[]): Attempt | undefined {
 }
 
 export function ExamList() {
+  const { t } = useTranslation();
   const { manifest, manifestUrl } = useLoaderData() as ExamListData;
   const progress = useStore((state) => state.progress);
   const id = manifestId(manifestUrl);
 
   return (
     <section className="pt-run">
-      <Heading>Exámenes</Heading>
-      <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">
-        Elige un test y cómo quieres hacerlo. En modo estudio ves la respuesta al contestar; en modo
-        examen se corrige todo al entregar, con cronómetro.
-      </p>
+      <Heading>{t("examList.title")}</Heading>
+      <p className="mt-gap max-w-[65ch] text-[var(--ink-dim)]">{t("examList.intro")}</p>
 
       <ul className="mt-run">
         {manifest.exams.map((entry) => {
@@ -64,30 +63,30 @@ export function ExamList() {
 
               {last && top ? (
                 <span className="order-last w-full text-xs text-[var(--ink-dim)] sm:order-none sm:w-auto sm:text-end">
-                  último{" "}
+                  {t("examList.last")}{" "}
                   <Figure className="text-[var(--ink)]">
                     {last.correct}/{last.total}
                   </Figure>{" "}
-                  · mejor{" "}
+                  · {t("examList.best")}{" "}
                   <Figure className="text-[var(--ink)]">
                     {top.correct}/{top.total}
                   </Figure>{" "}
                   · <Figure className="text-[var(--ink)]">{attempts.length}</Figure>{" "}
-                  {attempts.length === 1 ? "intento" : "intentos"} ·{" "}
+                  {t("examList.tries", { count: attempts.length })} ·{" "}
                   <Figure>{formatElapsed(last.seconds)}</Figure>
                 </span>
               ) : (
                 <span className="order-last w-full text-xs uppercase tracking-[0.1em] text-[var(--ink-dim)] sm:order-none sm:w-auto">
-                  sin hacer
+                  {t("examList.notDone")}
                 </span>
               )}
 
               <span className="flex shrink-0 gap-gap text-sm">
                 <Link to={`/exams/${entry.number}?mode=study`} className="underline">
-                  Estudio
+                  {t("examList.study")}
                 </Link>
                 <Link to={`/exams/${entry.number}?mode=exam`} className="underline">
-                  Examen
+                  {t("examList.exam")}
                 </Link>
               </span>
             </li>

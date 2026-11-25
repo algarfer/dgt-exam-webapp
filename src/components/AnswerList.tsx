@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/cn";
 import type { PreparedQuestion } from "@/lib/prepare";
 import { Figure } from "./ui/Figure";
@@ -17,18 +18,21 @@ function stateFor(index: number, selected: number | null, revealed: boolean, cor
   return "open";
 }
 
-const hint: Record<RailState, string> = {
-  open: "",
-  committed: "Tu respuesta",
-  correct: "Respuesta correcta",
-  barred: "Tu respuesta, incorrecta",
-};
+const hintKeys = {
+  open: null,
+  committed: "answers.committed",
+  correct: "answers.correct",
+  barred: "answers.barred",
+} as const satisfies Record<RailState, string | null>;
 
 export function AnswerList({ question, selected, revealed, onSelect }: AnswerListProps) {
+  const { t } = useTranslation();
+
   return (
     <ul className="mt-interval">
       {question.answers.map((answer, index) => {
         const state = stateFor(index, selected, revealed, question.correctIndex);
+        const hint = hintKeys[state];
 
         return (
           <li key={answer.text}>
@@ -55,9 +59,9 @@ export function AnswerList({ question, selected, revealed, onSelect }: AnswerLis
               <Figure className="shrink-0 text-[var(--ink-dim)]">{index + 1}</Figure>
               <span className="flex-1 text-base sm:text-lg">{answer.text}</span>
 
-              {hint[state] ? (
+              {hint ? (
                 <span className="sr-only sm:not-sr-only sm:shrink-0 sm:text-xs sm:uppercase sm:tracking-[0.1em] sm:text-[var(--ink-dim)]">
-                  {hint[state]}
+                  {t(hint)}
                 </span>
               ) : null}
             </label>
